@@ -1,0 +1,19 @@
+{
+  "name": "org-chart-generator",
+  "version": "1.0.0",
+  "description": "Node.js CLI app generating a webpage showing staff members of a fictional engineering team",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^8.2.6",
+    "jest": "^29.7.0"
+  }
+}
