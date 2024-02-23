@@ -5,13 +5,15 @@ const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
+
+//path is a core node module, as is fs; inquirer is now installed
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
 
-// TODO: Write Code to gather information about the development team members, and render the HTML file.
+// TODO: Write Code to gather information about the development team members, and render the HTML file. NOTE the HTML is already laid out in file ./src/page-template.js
 
 //Rough prompt layout using Inquirer, wrapped in a function
 function promptUser() {
@@ -52,8 +54,9 @@ function promptUser() {
     }
 
 
-    //a PERSON OBJECT needs to be created which will have three prototypes (?)
-    // Manager, Engineer and Intern
+
+    //An EMPLOYEE class and three subclasses (Manager, Engineer, Intern) need to be coded in their own separate js files, in the lib directory
+
     // Each person needs their name and email address from prompt
     // Each person needs to choose job title from list of three: Manager, Engineer and Intern
     // Manager will be asked for their office number
