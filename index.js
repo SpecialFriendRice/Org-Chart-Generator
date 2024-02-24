@@ -6,47 +6,44 @@ const path = require("path");
 const fs = require("fs");
 
 
-//Path module defines where the resulting html file should go: into a directory called output. The two lines below were supplied as starter code and I have put them in the renderHTML function
+//Path module methods (?) are used to where the resulting html file should go: into a directory called output. The two lines below were supplied as starter code and I have put them in the renderHTML function
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-//How is this render constant worked into renderHTML?
+//How is this render constant worked into renderHTML function?
 const render = require("./src/page-template.js");
 
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file. NOTE the HTML is already laid out in page-template.js
 
+//Cut and past from the README = Write code in index.js that uses inquirer to gather information about the development team members and creates objects for each team member using the correct classes as blueprints.
+
+
 //Rough prompt layout using Inquirer, wrapped in a function (need async keyword for sure?)
+//Do I need to use await?
+
+//is this now going to end up just a createMgr function? Shall I rename from promptUser?
+
 async function promptUser() {
     return inquirer
       .prompt([
         {
             type: 'input',
-            name: 'name',
-            message: 'Enter employee name',
+            name: 'mgrName',  //specifically avoid using just "name" for all classes?
+            message: 'Enter name of Team Manager',
         },
-    
-        {
-            type: 'list',
-            name: 'role',
-            message: 'Choose employee role',
-            choices: ['Manager', 'Engineer', 'Intern'],
-            //is there a point in making a choice here if there are now three subclasses?
-        },
-       
     
         {
             type: 'input',
-            name: 'email',
-            message: 'Please enter employee email address',
-            //change to just username and include @fakemail.com elsewhere?
+            name: 'mgrId', //specifically avoid using just "id" for all classes?
+            message: 'Enter Employee ID of Manager',
         },
 
         {
             type: 'input',
-            name: 'github',
-            message: 'Please enter your GitHub username',
-            //for Engineer subclass only
+            name: 'mgrEmail', //specifically avoid using just "email" for all classes?
+            message: 'Enter email address of Manager',
+            //haven't specified format e.g. @fakemail.com
         },
 
         {
@@ -55,6 +52,58 @@ async function promptUser() {
             message: 'Please enter your office number',
             //for Manager subclass only
         },
+
+        //WILL THE BELOW WORK? AT POINT OF CHOICES, SPECIFY NEW FUNCTION WITHIN A FUNCTION? I jhave now changed the function from promptUser to offerChoice - will this still work??? Where do I then call this new function?
+        async function offerChoice(){
+            const nextStep = await inquirer
+            .prompt([
+                {
+                    type: 'list',
+                    name: 'choiceStep',
+                    message: 'What would you like to do next?',
+                    choices: ['Add Engineer', 'Add Intern', 'Finish and create org chart'],
+                },
+
+
+            ])}
+
+            if (condition) {
+                
+            } else {
+                
+            }
+
+
+        //OR CAN I USE A VERY SIMPLE .then after the .prompt?? like below
+        // .then((responses) =>{
+        //     if (responses.choices === this.choices[0]) { //can this refer to the index of the choices array? can it be paired with this?
+        //         CODE FOR ADD ENGINEER
+        //     } else if(responses.choices === this.choices[1]) {
+        //         CODE FOR ADD INTERN 
+        //     } else {
+        //         CODE FOR FINISH AND CREATE AN ORG CHART
+        //     }
+        // });      
+
+        // Cut and paste from README = When a user enters those requirements then the user is presented with a menu with the option to:
+        // Add an engineer
+        // Add an intern
+        // Finish building the team
+        //DOES THIS SIT INSIDE THE SAME FUNCTION OR ANOTHER? DO I NEED ASYNC/AWAIT?
+    
+       
+
+
+        
+
+        {
+            type: 'input',
+            name: 'github',
+            message: 'Please enter your GitHub username',
+            //for Engineer subclass only
+        },
+
+       
 
         {
             type: 'input',
@@ -93,6 +142,8 @@ async function promptUser() {
 
       //how do I pull in the render constant/html template supplied in starter code (as below)?
       //const render = require("./src/page-template.js");
+
+     //NOTE although it’s not a requirement, consider adding validation to ensure that user input is in the proper format.
 
       fs.writeFile('outputPath', data, err =>{
         if (err) {
