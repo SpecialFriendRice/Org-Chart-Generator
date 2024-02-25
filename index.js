@@ -15,8 +15,6 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 //Function to create output directory if one does not exist already, and write the html string (= 'render') to a file called team.html within it
-//WHERE SHALL I CALL THE FUNCTION?
-
 function createHtmlFile(){
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR);
@@ -34,19 +32,18 @@ function createHtmlFile(){
 //     console.error(err);
 //   }
 
-// TODO: Write Code to gather information about the development team members, and render the HTML file. Or as described in README "Write code in index.js that uses inquirer to gather information about the development team members and creates objects for each team member using the correct classes as blueprints..."When a user decides to finish building their team then they exit the application, and the HTML is generated.".
+// TODO: as per README "Write code in index.js that uses inquirer to gather information about the development team members and creates objects for each team member using the correct classes as blueprints..."When a user decides to finish building their team then they exit the application, and the HTML is generated" (rendered).
 
 //Creating objects from classes for each team member:
-//Do I have to declare an empty array for team and push in each object (team member) as they are created?
+//Declare an empty array for team and push in each object (team member) as they are created (in a .then?) or in a separate function afterwards?
 let team = [];
-//should the below declaring (?) a new instance of a class (Manager, Engineer or Intern), then pushing to an array be in the format of a .then after each section of questions? OR in a separate function afterwards?
-//is the below the correct syntax for properties?
+
+//CHECK if below is the correct syntax for properties:
 // const newManager = new Manager (Manager.id, Manager.name, Manager.email, Manager.officeNumber);
 // team.push(newManager);
 
 
-//Rough prompt layout using Inquirer, wrapped in a function (need async keyword for sure?) Do I need to use await?
-
+//Async keyword and need for await is still not clear
 
 async function createMgr() {
     return inquirer
@@ -74,14 +71,14 @@ async function createMgr() {
             type: 'input',
             name: 'officeNumber',
             message: 'Enter office number of Manager',
-            //for Manager subclass only
+            
         },
-    ])
-        //why is the below not working (it was originally in a .then)?
+    ]).then (Manager => { //is Manager the correct argument here? 
         const newManager = new Manager (Manager.name, Manager.id, Manager.email, Manager.officeNumber);
         team.push(newManager);
         offerChoice();
-    };
+    })
+};
 
 
     //offerChoice() below was originally a function within a function.
