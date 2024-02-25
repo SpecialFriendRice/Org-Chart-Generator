@@ -19,7 +19,7 @@ function createHtmlFile(){
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR);
       } else {
-        fs.writeFileSync(outputPath, render) //definitely use outputPath, not 'team.html'? Is render already a string?? Would it need to go in backticks??
+        fs.writeFileSync(outputPath, "how do I get my html?") //Is render already a string?? Would it need to go in backticks?? It's not render(team) that you need
       }  
 };
 
@@ -37,10 +37,6 @@ function createHtmlFile(){
 //Creating objects from classes for each team member:
 //Declare an empty array for team and push in each object (team member) as they are created (in a .then?) or in a separate function afterwards?
 let team = [];
-
-//CHECK if below is the correct syntax for properties:
-// const newManager = new Manager (Manager.id, Manager.name, Manager.email, Manager.officeNumber);
-// team.push(newManager);
 
 
 //Async keyword and need for await is still not clear
@@ -73,9 +69,10 @@ async function createMgr() {
             message: 'Enter office number of Manager',
             
         },
-    ]).then (Manager => { //is Manager the correct argument here? 
-        const newManager = new Manager (Manager.name, Manager.id, Manager.email, Manager.officeNumber);
+    ]).then (ManagerData => { //Why is ManagerData the correct argument here? 
+        const newManager = new Manager (ManagerData.name, ManagerData.id, ManagerData.email, ManagerData.officeNumber);
         team.push(newManager);
+        //console.log(team);
         offerChoice();
     })
 };
@@ -122,9 +119,10 @@ async function createMgr() {
                         message: 'Enter GitHub username of Engineer',    
                     }
 
-                ]).then (Engineer => { //is Engineer the correct argument here? 
-                const newEngineer = new Engineer (Engineer.name, Engineer.id, Engineer.email, Engineer.github);
+                ]).then (EngineerData => { //is Engineer the correct argument here? the below line throws an error related to "new Engineer" = is not a constructor
+                const newEngineer = new Engineer (EngineerData.name, EngineerData.id, EngineerData.email, EngineerData.github);
                 team.push(newEngineer);
+                //console.log(team);
                 offerChoice();
 
                });
@@ -155,21 +153,23 @@ async function createMgr() {
                         message: 'Enter name of school or university loaning Intern',    
                     },
 
-                ]).then (Intern => { //is Intern the correct argument here?
-                    const newIntern = new Intern (Intern.name, Intern.id, Intern.email, Intern.school);
+                ]).then (InternData => { //is Intern the correct argument here?
+                    const newIntern = new Intern (InternData.name, InternData.id, InternData.email, InternData.school);
                     team.push(newIntern);
+                    //console.log(team);
                     offerChoice();
                  });
 
             } else { 
                 //return/break/exit? 
                 console.log("Your org chart will now be generated");
-                createHtmlFile(render(team));
+                createHtmlFile();
                  
             }
             
         });
         }
+        //offerChoice();
         createMgr();
     
 
