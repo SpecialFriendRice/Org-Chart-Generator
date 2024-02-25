@@ -7,20 +7,25 @@ const fs = require("fs");
 
 
 //These two path module methods are used to where dictate where the resulting html file should go: into a directory called output. The two lines below were supplied as starter code
-// Do they need to be in the renderHTML function?
+
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
+// Do the above need to be in the (current) renderHTML function? Where is the function creating the output directory?
+
+// TODO: Write Code to gather information about the development team members, and render the HTML file. 
+//NOTE the HTML itself is already laid out in page-template.js, which is grabbed below
 const render = require("./src/page-template.js");
 
 
-// TODO: Write Code to gather information about the development team members, and render the HTML file. 
-//NOTE the HTML itself is already laid out in page-template.js
-
 //Cut and past from the README = Write code in index.js that uses inquirer to gather information about the development team members and creates objects for each team member using the correct classes as blueprints.
 //creating objects from classes will mean const emp1 = new Engineer (all parameters, comma separated) etc
-//Do I have to declare an empty array for team (let team = []) and push in each object (team member) as they are created? So team.push(emp1)
+//Do I have to declare an empty array for team (let team = []) and push in each object (team member) as they are created? So team.push(emp1). Is the array called team - check tests
+let team = [];
 //should the above declaring (?) a new object and then pushing to an array be a .then after each section of questions?
+//the below is using the syntax from the page-template - will this work with template literals? Probably not as there will be numbers like for employee id, but can they be treated as strings? Where can I 
+const newManager = new Manager (${manager.getId()}, ${manager.getName()}, ${manager.getEmail()}, ${manager.getOfficeNumber()})
+team.push(newManager);
 
 
 //Rough prompt layout using Inquirer, wrapped in a function (need async keyword for sure?)
