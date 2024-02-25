@@ -40,14 +40,14 @@ function createHtmlFile(){
 let team = [];
 //should the below declaring (?) a new instance of a class (Manager, Engineer or Intern), then pushing to an array be in the format of a .then after each section of questions? OR in a separate function afterwards?
 //is the below the correct syntax for properties?
-const newManager = new Manager (Manager.id, Manager.name, Manager.email, Manager.officeNumber);
-team.push(newManager);
+// const newManager = new Manager (Manager.id, Manager.name, Manager.email, Manager.officeNumber);
+// team.push(newManager);
 
 
 //Rough prompt layout using Inquirer, wrapped in a function (need async keyword for sure?) Do I need to use await?
-//is the first function below that I have as promptUser currently going to end up just a createMgr function? 
 
-async function promptUser() {
+
+async function createMgr() {
     return inquirer
       .prompt([
         {
@@ -75,10 +75,20 @@ async function promptUser() {
             message: 'Enter office number of Manager',
             //for Manager subclass only
         },
+    ])
 
-        //WILL THE BELOW WORK i.e. making a function with a function at this point when choices need to be made? Where do I then call this new function? Do I need ASYNC/AWAIT? Should I use a switch statement inside a while loop?
+        .then //Then create a new object and push to the team array. what else here?? Can a then sit inside this function now I've put a nested function in it?
+        const newManager = new Manager (Manager.id, Manager.name, Manager.email, Manager.officeNumber);
+        team.push(newManager);
+        offerChoice();
+    };
+    createMgr();
+
+    //offerChoice() below was originally a function within a function.
+    // Do I need ASYNC/AWAIT? e.g. await inquirer? Should I use a switch statement inside a while loop?
+
         function offerChoice(){
-            const nextStep = await inquirer //not sure of function and constant names yet!
+            const nextStep = inquirer //not sure of function and constant names yet!
             .prompt([
                 {
                     type: 'list',
@@ -114,7 +124,7 @@ async function promptUser() {
                         name: 'github',  //capitalisation?
                         message: 'Enter GitHub username of Engineer',    
                     },
-                .then 
+               // .then 
                 //take back to the choiceStep - do I need to do this by return/break or should I have broken the function(s) at a different place?
 
                 ]);
@@ -169,9 +179,10 @@ async function promptUser() {
                 //RENDER render(team)? 
                 //return/break/exit? 
                 console.log("Your org chart will now be generated");
+                createHtmlFile();
                  //Cut and paste from the README "When a user decides to finish building their team then they exit the application, and the HTML is generated.""
             }
-        },
+        };
 
 
         //OR CAN I USE A SIMPLE .then after the .prompt?? Roughly as below
@@ -187,11 +198,11 @@ async function promptUser() {
 
     
        
-      ]);
-    }
+    
+    
 
     //Code to render the html: 
-    //in place of 'data' do I need 'team' or 'render' (in which format?) or both/neither?
+    //in place of 'data' do I need 'team' or 'render' (in which format?) or both/neither? Do I render(team)?    
     function createHtmlFile(data) { 
 
         const OUTPUT_DIR = path.resolve(__dirname, "output");
