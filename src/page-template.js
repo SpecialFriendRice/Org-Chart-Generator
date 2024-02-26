@@ -59,6 +59,7 @@ const generateTeam = team => {
     };
 
     const html = [];
+   
 
     html.push(team
         .filter(employee => employee.getRole() === "Manager")
@@ -75,9 +76,12 @@ const generateTeam = team => {
         .join("")
     );
 
+    // should I flatten the array? Did I need to use the spread operator on ...team?
     return html.join("");
-
+    //return html.flat()join("");
+   
 }
+
 
 // exports function to generate entire page
 module.exports = team => {

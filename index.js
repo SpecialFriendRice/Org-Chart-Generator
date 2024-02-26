@@ -19,7 +19,7 @@ function createHtmlFile(){
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR);
       } else {
-        fs.writeFileSync(outputPath, "how do I get my html?") //Is render already a string?? Would it need to go in backticks?? It's not render(team) that you need
+        fs.writeFileSync(outputPath, "Needs final html here!") //Is render already a string?? Would it need to go in backticks?? It's not render(team) that you need
       }  
 };
 
@@ -69,7 +69,7 @@ async function createMgr() {
             message: 'Enter office number of Manager',
             
         },
-    ]).then (ManagerData => { //Why is ManagerData the correct argument here? 
+    ]).then (ManagerData => { //Why is ManagerData the correct argument here? Am I in fact taking the wrong item?
         const newManager = new Manager (ManagerData.name, ManagerData.id, ManagerData.email, ManagerData.officeNumber);
         team.push(newManager);
         //console.log(team);
