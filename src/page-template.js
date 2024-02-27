@@ -76,7 +76,7 @@ const generateTeam = team => {
         .join("")
     );
 
-    // should I flatten the array? Did I need to use the spread operator on ...team?
+   
     return html.join("");
     //return html.flat()join("");
    
