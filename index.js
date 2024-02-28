@@ -102,7 +102,7 @@ async function createMgr() {
                     }
 
                 ]).then (EngineerData => {
-                const newEngineer = new Engineer (EngineerData.name, EngineerData.id, EngineerData.email, EngineerData.github);
+                const newEngineer = new Engineer (EngineerData.id, EngineerData.name, EngineerData.email, EngineerData.github);
                 team.push(newEngineer);
                 offerChoice();
 
@@ -135,7 +135,7 @@ async function createMgr() {
                     },
 
                 ]).then (InternData => { 
-                    const newIntern = new Intern (InternData.name, InternData.id, InternData.email, InternData.school);
+                    const newIntern = new Intern (InternData.id, InternData.name, InternData.email, InternData.school);
                     team.push(newIntern);
                     offerChoice();
                  });
